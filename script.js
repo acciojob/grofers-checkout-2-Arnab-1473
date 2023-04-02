@@ -1,12 +1,14 @@
 //your code here
 let total = 0;
-const price = document.querySelector('[data-ns-test="prices"]');
-price.forEach(price =>{
-    total += Number(price.textContent);
+const prices = document.querySelectorAll('[data-ns-test="prices"]');
+prices.forEach(price => {
+  total += parseFloat(price.innerText);
 });
+
+// Add a new row at the bottom of the table with the total price
 const table = document.querySelector('table');
-const row = table.insertRow();
-const cell = row.insertCell();
-cell.colSpan = 2;
-cell.textContent = `Total: ${total}`;
-cell.setAttribute('data-ns-test', 'grandTotal');
+const newRow = table.insertRow(-1);
+const newCell = newRow.insertCell(0);
+newCell.setAttribute('colspan', '2');
+newCell.setAttribute('data-ns-test', 'grandTotal');
+newCell.innerText = `Total: ${total}`;
